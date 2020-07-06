@@ -17,8 +17,8 @@ class Listener(pingpong_pb2_grpc.PingPongServiceServicer):
 
     def ping(self, request, context):
         self.counter += 1
-        if self.counter > 10000:
-            print("100 Chamadas por %3f segundos" % (time.time() - self.last_print_time))
+        if self.counter > 1000:
+            print("1000 Chamadas por %3f segundos" % (time.time() - self.last_print_time))
             self.last_print_time = time.time()
             self.counter = 0
         return pingpong_pb2.Pong(count=request.count + 1)
