@@ -72,12 +72,9 @@ class DemoServer(demo_pb2_grpc.GRPCDemoServicer):
                 response_data=("Enviada pelo servidor, Mensagem = %d" % i))
         t.join()
 
-
 def main():
     server = grpc.server(futures.ThreadPoolExecutor())
-
     demo_pb2_grpc.add_GRPCDemoServicer_to_server(DemoServer(), server)
-
     server.add_insecure_port(SERVER_ADDRESS)
     print("------------------INICIANDO GRPC SERVIDOR-------------")
     server.start()
@@ -89,7 +86,6 @@ def main():
     # import time
     # while 1:
     #     time.sleep(10)
-
 
 if __name__ == '__main__':
     main()
