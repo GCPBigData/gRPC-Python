@@ -27,10 +27,8 @@ def run():
                 channel.unsubscribe(close)
                 exit()
 
-
 def close(channel):
     channel.close()
-
 
 if __name__ == "__main__":
     run()
