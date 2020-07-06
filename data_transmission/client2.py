@@ -10,7 +10,7 @@ __all__ = [
 ]
 
 SERVER_ADDRESS = "localhost:23333"
-CLIENT_ID = 1
+CLIENT_ID = 2
 
 def simple_method(stub):
     print("//--------------INICIANDO LIGACAO : SIMPLES :--------//")
