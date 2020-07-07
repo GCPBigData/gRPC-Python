@@ -9,6 +9,8 @@ import chunk_pb2, chunk_pb2_grpc
 CHUNK_SIZE = 1024 * 1024  # 1MB
 
 def get_file_chunks(filename):
+    # rb   -> Abre um arquivo para leitura apenas em formato binário.
+    # rb + -> Abre um arquivo para leitura e gravação em formato binário.
     with open(filename, 'rb') as f:
         while True:
             piece = f.read(CHUNK_SIZE)
@@ -17,6 +19,8 @@ def get_file_chunks(filename):
             yield chunk_pb2.Chunk(buffer=piece)
 
 def save_chunks_to_file(chunks, filename):
+    # wb   -> Abre um arquivo para gravação apenas em formato binário.
+    # wb + -> Abre um arquivo para escrever e ler em formato binário.
     with open(filename, 'wb') as f:
         for chunk in chunks:
             f.write(chunk.buffer)
@@ -42,7 +46,7 @@ class FileServer(chunk_pb2_grpc.FileServerServicer):
 
         class Servicer(chunk_pb2_grpc.FileServerServicer):
             def __init__(self):
-                self.tmp_file_name = 'C:/Users/usuario/Documents/Dev/grpc-file-transfer/'
+                self.tmp_file_name = 'C:/teste/file.parquet'
 
             def upload(self, request_iterator, context):
                 save_chunks_to_file(request_iterator, self.tmp_file_name)
