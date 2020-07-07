@@ -10,7 +10,7 @@ if __name__ == '__main__':
     #client.upload(in_file_name)
 
     #demo for file downloading:
-    out_file_name = 'C:/teste/baixados/'
+    out_file_name = 'C:/teste/baixados/teste.csv'
     if os.path.exists(out_file_name):
        print("aqui 1")
        os.remove(out_file_name)
