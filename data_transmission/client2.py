@@ -1,3 +1,6 @@
+import os
+import lib
+
 import time
 import grpc
 
@@ -10,9 +13,22 @@ __all__ = [
 ]
 
 SERVER_ADDRESS = "localhost:23333"
+client = lib.FileClient('localhost:23333')
 CLIENT_ID = 2
 
 def simple_method(stub):
+    #Uploading file
+    in_file_name = 'C:\Users\usuario\Documents\Dev\gRPC-Python\data_transmission\uploading\file.parquet'
+    client.upload(in_file_name)
+
+    #Downloading file
+    out_file_name = 'C:\Users\usuario\Documents\Dev\gRPC-Python\data_transmission\downloading\file.parquet'
+    if os.path.exists(out_file_name):
+       os.remove(out_file_name)
+    client.download('whatever_name', out_file_name)
+    os.system(f'sha1sum {in_file_name}')
+    os.system(f'sha1sum {out_file_name}')
+
     print("//--------------INICIANDO LIGACAO : SIMPLES :--------//")
     request = demo_pb2.Request(client_id=CLIENT_ID,
                                request_data="Chamada pelo cliente Python")

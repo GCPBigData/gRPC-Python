@@ -78,6 +78,7 @@ def main():
     server.add_insecure_port(SERVER_ADDRESS)
     print("------------------INICIANDO GRPC SERVIDOR-------------")
     server.start()
+    #lib.Fileserver().start(23333)
     server.wait_for_termination()
 
     # If raise Error:
