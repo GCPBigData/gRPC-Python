@@ -11,6 +11,7 @@ CHUNK_SIZE = 1024 * 1024  # 1MB
 def get_file_chunks(filename):
     # rb   -> Abre um arquivo para leitura apenas em formato binário.
     # rb + -> Abre um arquivo para leitura e gravação em formato binário.
+    # ab + -> Abre um arquivo para anexar e ler em formato binário.
     with open(filename, 'rb') as f:
         while True:
             piece = f.read(CHUNK_SIZE)
