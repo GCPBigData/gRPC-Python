@@ -10,13 +10,12 @@ if __name__ == '__main__':
     #client.upload(in_file_name)
 
     #demo for file downloading:
-    out_file_name = 'C:/teste/baixados/file.parquet'
+    out_file_name = 'D:/teste/baixado/file.mkv'
     if os.path.exists(out_file_name):
-       print("aqui 1")
        os.remove(out_file_name)
-       print("aqui 2")
-    client.download('file.paquet', out_file_name)
-    print("aqui 3")
+
+    print(client)
+    client.download('file.mkv', out_file_name)
     #os.system(f'sha1sum {in_file_name}')
     #os.system(out_file_name)
-    print("FIM")
+    print("ARQUIVO BAIXADO NA PASTA :", out_file_name)

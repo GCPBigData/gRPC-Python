@@ -15,6 +15,8 @@ def get_file_chunks(filename):
     with open(filename, 'rb') as f:
         while True:
             piece = f.read(CHUNK_SIZE)
+            tac = time.perf_counter()
+            print(f"Lendo as Partes: ->> {tac:0.4f}")
             if len(piece) == 0:
                 return
             yield chunk_pb2.Chunk(buffer=piece)
@@ -25,6 +27,8 @@ def save_chunks_to_file(chunks, filename):
     with open(filename, 'wb') as f:
         for chunk in chunks:
             f.write(chunk.buffer)
+            tic = time.perf_counter()
+            print(f"Escrevendo as Partes: ->> {tic:0.4f}")
 
 class FileClient:
     def __init__(self, address):
@@ -32,13 +36,15 @@ class FileClient:
         self.stub = chunk_pb2_grpc.FileServerStub(channel)
 
     def upload(self, in_file_name):
-        print("INICIANDO UPLOADING SERVIDOR")
+        print("INICIANDO UPLOADING DO ARQUIVO")
         chunks_generator = get_file_chunks(in_file_name)
         response = self.stub.upload(chunks_generator)
         assert response.length == os.path.getsize(in_file_name)
+        tic = time.perf_counter()
+        print(f"Enviado as Partes: ->> {tic:0.4f}")
 
     def download(self, target_name, out_file_name):
-        print("INICIANDO DOWNLOADING SERVIDOR")
+        print("INICIANDO DOWNLOAD DO ARQUIVO")
         response = self.stub.download(chunk_pb2.Request(name=target_name))
         save_chunks_to_file(response, out_file_name)
 
@@ -47,7 +53,7 @@ class FileServer(chunk_pb2_grpc.FileServerServicer):
 
         class Servicer(chunk_pb2_grpc.FileServerServicer):
             def __init__(self):
-                self.tmp_file_name = 'C:/teste/file.parquet'
+                self.tmp_file_name = 'D:/teste/file.mkv'
 
             def upload(self, request_iterator, context):
                 save_chunks_to_file(request_iterator, self.tmp_file_name)
