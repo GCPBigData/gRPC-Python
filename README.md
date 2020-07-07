@@ -1,5 +1,6 @@
 # gRPC
 git clone https://github.com/GCPBigData/gRPC-Python
+git clone https://github.com/grpc-ecosystem/awesome-grpc
 ## setup
 ```bash
 $ virtualenv venv

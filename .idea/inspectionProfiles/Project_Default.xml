@@ -12,6 +12,13 @@
         </value>
       </option>
     </inspection_tool>
+    <inspection_tool class="PyPep8Inspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="E302" />
+        </list>
+      </option>
+    </inspection_tool>
     <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ignoredIdentifiers">
         <list>
@@ -19,6 +26,7 @@
           <option value="imageTest_server.main" />
           <option value="prime_pb2_grpc" />
           <option value="prime_pb2" />
+          <option value="data_transmission.server.*" />
         </list>
       </option>
     </inspection_tool>

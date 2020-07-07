@@ -10,7 +10,7 @@ if __name__ == '__main__':
     #client.upload(in_file_name)
 
     #demo for file downloading:
-    out_file_name = 'C:/teste/baixados/teste.csv'
+    out_file_name = 'C:/teste/baixados/file.parquet'
     if os.path.exists(out_file_name):
        print("aqui 1")
        os.remove(out_file_name)
@@ -18,5 +18,5 @@ if __name__ == '__main__':
     client.download('file.paquet', out_file_name)
     print("aqui 3")
     #os.system(f'sha1sum {in_file_name}')
-    os.system(out_file_name)
-    print("aqui 4")
+    #os.system(out_file_name)
+    print("FIM")
